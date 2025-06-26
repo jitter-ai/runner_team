@@ -1,0 +1,88 @@
+
+services:
+  runner-1:
+    image: ghcr.io/quantumpulse42/runner_team/runnaz_image:latest
+    container_name: github-runner-1
+    restart: unless-stopped
+    user: "1000:143"
+    #env_file: .env
+    environment:
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      RUNNER_SCOPE: org
+      ORG_NAME: QuantumPulse42
+      RUNNER_NAME: runner-1
+      RUNNER_WORKDIR: /_work/runner-1
+      LABELS: ai-team,runz
+      DISABLE_AUTO_UPDATE: "true"
+      DISABLE_AUTOMATIC_DEREGISTRATION: "true"
+      RUN_AS_ROOT: "false"
+    group_add:
+      - "143"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  runner-2:
+    image: ghcr.io/quantumpulse42/runner_team/runnaz_image:latest
+    container_name: github-runner-2
+    restart: unless-stopped
+    user: "1000:143"
+    #env_file: .env
+    environment:
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      RUNNER_SCOPE: org
+      ORG_NAME: QuantumPulse42
+      RUNNER_NAME: runner-2
+      RUNNER_WORKDIR: /_work/runner-2
+      LABELS: ai-team,runz
+      DISABLE_AUTO_UPDATE: "true"
+      DISABLE_AUTOMATIC_DEREGISTRATION: "true"
+      RUN_AS_ROOT: "false"
+    group_add:
+      - "143"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  runner-3:
+    image: ghcr.io/quantumpulse42/runner_team/runnaz_image:latest
+    container_name: github-runner-3
+    restart: unless-stopped
+    user: "1000:143"
+    #env_file: .env
+    environment:
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      RUNNER_SCOPE: org
+      ORG_NAME: QuantumPulse42
+      RUNNER_NAME: runner-3
+      RUNNER_WORKDIR: /_work/runner-3
+      LABELS: ai-team,runz
+      DISABLE_AUTO_UPDATE: "true"
+      DISABLE_AUTOMATIC_DEREGISTRATION: "true"
+      RUN_AS_ROOT: "false"
+    group_add:
+      - "143"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+
+# version: "3.8"
+
+# x-runner-template: &default-runner
+#   image: ghcr.io/quantumpulse42/runner_team/runnaz_image:latest
+#   restart: unless-stopped
+#   user: "1000:143"
+#   environment:
+#     RUNNER_TOKEN: ${RUNNER_TOKEN}
+#     RUNNER_SCOPE: ${RUNNER_SCOPE:-org}
+#     ORG_NAME: ${ORG_NAME}
+#     LABELS: ${LABELS:-ai-team,runz}
+#     DISABLE_AUTO_UPDATE: "true"
+#     DISABLE_AUTOMATIC_DEREGISTRATION: "true"
+#     RUN_AS_ROOT: "false"
+#   group_add:
+#     - "143"
+#   volumes:
+#     - /var/run/docker.sock:/var/run/docker.sock
+
+#     # 🔧 Mount your own project directories below if needed
+#     # - /your/host/path:/desired/container/path

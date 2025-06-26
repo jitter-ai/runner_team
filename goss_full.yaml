@@ -1,0 +1,23 @@
+file:
+  /entrypoint.sh:
+    exists: true
+    mode: "0755"
+
+user:
+  runner:
+    exists: true
+    groups:
+      - docker
+      - sudo
+
+package:
+  git:
+    installed: true
+  curl:
+    installed: true
+
+command:
+  docker --version:
+    exit-status: 0
+  git --version:
+    exit-status: 0

@@ -1,0 +1,23 @@
+# 🧪 Run Goss Validation Against the Runner Image
+# This uses dgoss to validate that key system expectations
+# (files, users, packages, commands) are satisfied inside the container.
+# Docs: https://github.com/aelsabbahy/goss
+
+# Set the path to the Goss variable file
+GOSS_VARS: goss_vars.yaml
+
+# Set the path to the Goss test definitions
+GOSS_FILE: goss_full.yaml
+
+# Optional delay before running validation
+GOSS_SLEEP: 1
+
+# Example shell script to execute taasahe container with injected environment variables
+run_command: |
+  dgoss run --env-file .env \
+    -e RUNNER_SCOPE=org \                      # Set to "org" or "repo"
+    -e ORG_NAME=your_org_here \                # Replace with your GitHub organization
+    -e RUNNER_WORKDIR=/your/desired/workdir \  # Set the runner's internal working directory
+    -e DISABLE_AUTO_UPDATE=true \              # Optional: disable auto-updating
+    -e DISABLE_AUTOMATIC_DEREGISTRATION=true \ # Optional: avoid cleanup deregistration
+    your-runner-image-name                     # Replace with your actual Docker image name
